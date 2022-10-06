@@ -1,6 +1,7 @@
 import Mesh, MeshIO
 
 import numpy as np
+from pathlib import Path
 import os
 
 # Takes a listOfFace [[[k]n]m]
@@ -16,16 +17,15 @@ def computeMean(listOfFace):
 
 
 if __name__ == "__main__": 
-    objDir = './objs'
+    objDir = Path('./objs')
     faceV = []
     meshData = []
-    for o in os.listdir(objDir):
-        if o.endswith('.obj'):
-            mesh = Mesh.Mesh()
-            MeshIO.readMesh(mesh, os.path.join(objDir, o))
-            meshData.append(mesh)
-            faceV.append(mesh.vertices)
-            print(o, len(mesh.vertices))
+    for o in objDir.glob('*.obj'):
+        mesh = Mesh.Mesh()
+        MeshIO.readMesh(mesh, o)
+        meshData.append(mesh)
+        faceV.append(mesh.vertices)
+        print(o, len(mesh.vertices))
 
 
 
