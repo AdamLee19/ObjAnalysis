@@ -34,24 +34,25 @@ param = u.T @ trainSubMean
 
 
 print("Saving Eigen Vector U {}".format(u.shape))
-with open('engenVector-face.npy', 'wb') as f:
-    np.save(f, u)  #37398 * 3 
+with open('eigenVector-face.npy', 'wb') as f:
+    np.save(f, u) # (37398, 48)
 
 
 print("Saving face matrix {}".format(training.shape))
 with open('face.npy', 'wb') as f:
-    np.save(f, training)  #37398 * 3
+    np.save(f, training)  #(37398, 48)
 
 
 print("Saving paramter matrix param {}".format(param.shape))
 with open('param-face.npy', 'wb') as f:
-    np.save(f, param)  #37398 * 3
-    
+    np.save(f, param)  #(48, 48)
+
+s = s.reshape(-1,1)
 print("Saving eigenValue matrix s {}".format(s.shape))
 with open('eigenValue-face.npy', 'wb') as f:
-    np.save(f, s)  #37398 * 3
+    np.save(f, s)  # (48, 1)
 
 
 print("Saving mean {}".format(mean_face.shape))
 with open('mean-face.npy', 'wb') as f:
-    np.save(f, mean_face)  #37398 * 3
+    np.save(f, mean_face)  # (37398 , 1)

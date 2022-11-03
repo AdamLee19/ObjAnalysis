@@ -1,0 +1,4 @@
+aligned/
+.DS_Store
+objs/
+*.npy
