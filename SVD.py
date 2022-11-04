@@ -32,7 +32,7 @@ u, s, vh = np.linalg.svd(trainSubMean, full_matrices=False)
 param = u.T @ trainSubMean
 
 
-
+print(f'vh shape: {vh.shape}')
 print("Saving Eigen Vector U {}".format(u.shape))
 with open('eigenVector-face.npy', 'wb') as f:
     np.save(f, u) # (37398, 48)
