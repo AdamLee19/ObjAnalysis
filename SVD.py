@@ -48,8 +48,8 @@ with open('param-face.npy', 'wb') as f:
     np.save(f, param)  #(48, 48)
 
 s = s.reshape(-1,1)
-print("Saving eigenValue matrix s {}".format(s.shape))
-with open('eigenValue-face.npy', 'wb') as f:
+print("Saving singularValue matrix s {}".format(s.shape))
+with open('singularValue-face.npy', 'wb') as f:
     np.save(f, s)  # (48, 1)
 
 
