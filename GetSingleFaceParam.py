@@ -24,9 +24,9 @@ for o in objDir.glob('*.obj'):
     point_vec = np.array(mesh.vertices).flatten().reshape(-1, 1)
     
     param = eigen_vec.T @ (point_vec - mean_vec)
-    print(o, point_vec.shape)
+    print(o, param.shape)
 
-    writeFile(o.with_suffix('.npy'), point_vec)
+    writeFile(o.with_suffix('.npy'), param)
 
 
     
