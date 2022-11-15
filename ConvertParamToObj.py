@@ -3,9 +3,6 @@ from NumpyIO import *
 import MeshIO as mio
 import Mesh
 
-paramDir = Path('param.npy')
-face_vec = readFile(paramDir)
-print(face_vec.shape)
 
 
 eigenVecDir = Path('./eigenVector-face.npy')
@@ -21,9 +18,15 @@ objDir = Path('./aligned/F_015.obj')
 mesh = Mesh.Mesh()
 mio.readMesh(mesh, objDir)
 
+for n in Path('./npys/').glob('*.npy'):
+		
+	paramDir = Path(n)
+	face_vec = readFile(paramDir).reshape(-1, 1)
+	print(n,face_vec.shape)
 
-obj = eigen_vec @ face_vec + mean_vec
-print(obj.shape)
 
-mesh.updateVert(obj.reshape(-1,3).tolist())
-mio.writeMesh(mesh,  'new.obj')
+	obj = eigen_vec @ face_vec + mean_vec
+	
+
+	mesh.updateVert(obj.reshape(-1,3).tolist())
+	mio.writeMesh(mesh,  f"{n.with_suffix('.obj')}")
