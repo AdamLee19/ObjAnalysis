@@ -21,6 +21,7 @@ for o in alignedDir.glob('*.obj'):
 
 
 training = np.array(faceV).T
+print(f'Training Shape: {training.shape}')
 
 mean_face = np.mean(training, axis = 1).reshape(-1, 1)
 
@@ -47,9 +48,10 @@ print("Saving paramter matrix param {}".format(param.shape))
 with open('param-face.npy', 'wb') as f:
     np.save(f, param)  #(48, 48)
 
+s = s ** 2 / 47
 s = s.reshape(-1,1)
-print("Saving singularValue matrix s {}".format(s.shape))
-with open('singularValue-face.npy', 'wb') as f:
+print("eigen value matrix s {}".format(s.shape))
+with open('eigenValue-face.npy', 'wb') as f:
     np.save(f, s)  # (48, 1)
 
 

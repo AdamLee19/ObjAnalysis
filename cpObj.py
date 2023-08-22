@@ -1,18 +1,20 @@
-import os, shutil, glob
+from pathlib import Path
+import shutil, glob
+
 def processFileName(name):
-    nameArray = name.split()
+    nameArray = name.stem.split()
     g = 'F' if nameArray[1] == "Female" else 'M'
     num = nameArray[-1]
     return g + '_' + num
 
-folderDir = "./3DScanStore/48RetopoFaces/"
-for fileName in os.listdir(folderDir):
-    if fileName == '.DS_Store': continue
+folderDir = Path("./3DScanStore/48RetopoFaces/")
+for fileName in folderDir.glob('./[!.]*'):
     name = processFileName(fileName)
     try:
-        objFolder = os.path.join(folderDir, fileName, "OBJ/Sub Division/")
-        objs = glob.iglob(os.path.join(objFolder, "Head.OBJ"))
-        for obj in objs:
-            shutil.copy(obj, 'objs/' + name + '.obj')
+        objFolder = fileName.joinpath( "OBJ/Sub Division/")
+
+        obj = objFolder.joinpath( "Head.OBJ")
+        
+        shutil.copy(obj, 'objs/' + name + '.obj')
     except:
         print("Error: " + fileName) 

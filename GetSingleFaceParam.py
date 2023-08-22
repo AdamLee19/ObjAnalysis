@@ -17,7 +17,7 @@ meanDir = Path('mean-face.npy')
 mean_vec = readFile(meanDir)
 print(mean_vec.shape)
 
-objDir = Path('./aligned')
+objDir = Path('../aligned')
 for o in objDir.glob('*.obj'):
     mesh = Mesh.Mesh()
     mio.readMesh(mesh, o)
