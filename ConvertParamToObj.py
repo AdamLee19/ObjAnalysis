@@ -4,18 +4,18 @@ import MeshIO as mio
 import Mesh
 import numpy as np
 
+np.set_printoptions(precision=8, suppress=True)
 
-
-eigenVecDir = Path('./Combine/Points/EigenVector.npy')
+eigenVecDir = Path('./common/Point/EigenVector.npy')
 eigen_vec = readFile(eigenVecDir)[:,:-1]
 print(eigen_vec.shape)
 
-meanDir = Path('./Combine/Points/Mean.npy')
+meanDir = Path('./common/Point/Mean.npy')
 mean_vec = readFile(meanDir)
 print(mean_vec.shape)
 
-np.set_printoptions(precision=8, suppress=True)
-eigenValDir = Path('./Combine/Points/EigenValue.npy')
+
+eigenValDir = Path('./common/Point/EigenValue.npy')
 eigen_val = readFile(eigenValDir).flatten()
 print(np.sqrt(eigen_val))
 
@@ -24,6 +24,7 @@ print('\n\n\n\n')
 objDir = Path('./mean.obj')
 mesh = Mesh.Mesh()
 mio.readMesh(mesh, objDir)
+
 
 for n in Path('./npys/').glob('*.npy'):
 		
