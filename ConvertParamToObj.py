@@ -4,6 +4,9 @@ import MeshIO as mio
 import Mesh
 import numpy as np
 
+
+
+
 np.set_printoptions(precision=8, suppress=True)
 
 eigenVecDir = Path('./common/Point/EigenVector.npy')
@@ -25,6 +28,10 @@ objDir = Path('./mean.obj')
 mesh = Mesh.Mesh()
 mio.readMesh(mesh, objDir)
 
+fp = open('./common/ibug68.txt', 'r')
+a = fp.readlines()
+fp.close()
+lm_idx = [int(l) for l in a]
 
 for n in Path('./npys/').glob('*.npy'):
 		
@@ -39,6 +46,7 @@ for n in Path('./npys/').glob('*.npy'):
 	
 	obj = eigen_vec @ face_vec + mean_vec
 
+	print(obj.shape)
 	
 
 	mesh.updateVert(obj.reshape(-1,3).tolist())
