@@ -55,11 +55,7 @@ for c in cameraList:
 		
 
 		modelMat = readFile(d / Path('ModelMat.npy'))
-		zero1 = np.zeros((3, 1))
-		modelMat = np.hstack((modelMat, zero1))
-		zero2 = np.array([0, 0, 0, 1])
-		modelMat = np.vstack((modelMat, zero2))
-
+		
 
 
 		cam_matrix = mat @ modelMat	

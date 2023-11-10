@@ -56,13 +56,24 @@ class Mesh:
         return vertices
 
     def get_normal(self):
-        normals = array.array('f',[]) 
+       
 
         if len(self.normal) == 0:
             return self._get_normal()
         
-        print('Fix here')
+        normals = self._get_normal_per_vertex_list()
         return normals
+
+    def get_normal_per_vertex_list(self):
+        n = [ None ] * len(self.vertices)
+        for i in range(len(self.faces)):
+            face = self.faces[i].copy()
+            points = list(map(lambda x: int(x.split('/')[0]) - 1, face))
+            normals = list(map(lambda x: int(x.split('/')[-1]) - 1, face))
+            
+            for idx, e in enumerate(points):
+                n[e] = self.normal[normals[idx]]
+        return n
 
 
     def _get_normal(self):
