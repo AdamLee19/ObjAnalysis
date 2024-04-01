@@ -1,8 +1,9 @@
-# import Mesh, MeshIO
+import Mesh
+import MeshIO as mio
 import numpy as np
 from pathlib import Path
-from src.utils.NumpyIO import writeFile, readFile
-from src.utils.pca import PCA
+from NumpyIO import writeFile, readFile
+
 
 
     
@@ -13,7 +14,10 @@ if __name__ == "__main__":
     mesh = Mesh.Mesh()
     mio.readMesh(mesh, objDir)
 
-    for i in 
+    faces = mesh.get_faces_triangle()
+
+    faces = np.array(faces, dtype=int)
+    writeFile('Faces.npy', faces)
 
 
         

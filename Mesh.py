@@ -25,7 +25,16 @@ class Mesh:
         self.center = []
         self._compute_bbox()
         
-    
+
+    def scaleMesh(self, ratio=1):
+
+        # center mesh to origin
+        verts = nparray(self.vertices) - nparray(self.center)
+        # scale the mesh based on the ratio
+        verts *= ratio
+        self.updateVert(verts.tolist())
+
+
     def updateVert(self, v):
         self.vertices = v
         self._compute_bbox()
@@ -94,7 +103,15 @@ class Mesh:
         return normals
         
         
+    def get_faces_triangle(self):
+        faces = list(map(lambda x: list(map(lambda y: int(y.split('/')[0]) - 1, x)), self.faces))
         
+        for f in faces:
+            f.insert(2, f[2])
+            f.append(f[0])
+            
+        return faces
+
     def _compute_norm(self, v0, v1, v2):
         p0 = nparray(v0)
         p1 = nparray(v1)

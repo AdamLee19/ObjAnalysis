@@ -2,6 +2,8 @@ import numpy as np
 from functools import reduce
 
 def readMesh(mesh, fileName):
+
+    vertices = []
     with open(fileName, "r") as fp:
         lines = fp.read().splitlines()
         for l in lines:
@@ -13,10 +15,9 @@ def readMesh(mesh, fileName):
 
             l = l.split()
             elem = l.pop(0)
-
             if elem == 'v':
                 # vertice format:[[x,y,z], [x,y,z]. [x,y,z]....]
-                mesh.vertices.append(list(map(float, l)))
+                vertices.append(list(map(float, l)))
             elif elem == 'f':
                 mesh.faces.append(l)
             elif elem == 'vn':
@@ -24,8 +25,8 @@ def readMesh(mesh, fileName):
             elif elem == 'vt':
                 mesh.texCoord.append(list(map(float, l)))
         
-   
-        
+            
+    mesh.updateVert(vertices)
 
 
    
